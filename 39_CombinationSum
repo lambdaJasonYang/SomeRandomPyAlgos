@@ -1,0 +1,22 @@
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        candidates = [2,3,6,7]
+        target = 7
+        ##termination case is target
+
+        ##indefinite number of candidates indicates some recursion
+        ##Either choose an element or don't
+        tot = []
+        def csum(candidates,target,sol,index):
+            if target == 0:
+                tot.append(sol)
+            if target < 0 or index >= len(candidates):
+                return
+            for i in range(index,len(candidates)):#start index
+                csum(candidates,target - candidates[i], sol + [candidates[i]],i)
+                #dfs-like, except we don't do repeats by constraining start index
+        csum(candidates,target,[],0)
+
+        return tot
+        
+        
